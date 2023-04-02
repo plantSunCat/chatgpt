@@ -14,7 +14,7 @@ export default {
       });
     
       if (request.method !== 'GET' && request.method !== 'HEAD') {
-        serialized.body = request.body ? request.body.toString() : null;
+        serialized.body = request.body ? request.body : null;
       }
     
       try {
