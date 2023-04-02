@@ -15,10 +15,10 @@ export default {
         });
 
         let ret = {
-            req: JSON.stringify(request),
-            res: JSON.stringify(response)
+            req: request,
+            res: response
         }
 
-        return new Response(ret);
+        return new Response(JSON.stringify(ret));
     }
 }
