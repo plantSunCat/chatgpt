@@ -21,7 +21,7 @@ export default {
 
       return new Response(JSON.stringify(ret), response);
     } catch (error) {
-      let ret = {error: error}
+      let ret = {error: error.message}
       return new Response(JSON.stringify(ret), {status: 500});
     }
   }
