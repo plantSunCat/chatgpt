@@ -3,13 +3,22 @@ export default {
       const url = new URL(request.url);
       url.host = "api.openai.com";
       // openai is already set all CORS heasders 
-      let res =fetch(url, {
-        headers: request.headers,
-        method: request.method,
-        body: request.body,
-        redirect: 'follow'
-      });
+        const response = await fetch(url, {
+            headers: request.headers,
+            method: request.method,
+            body: request.body,
+            redirect: 'follow'
+        })
+        .catch(error => {
+            let ret = {error: error}
+            return 
+        });
 
-      return res;
+        let ret = {
+            req: request,
+            res: response
+        }
+
+        return new Response(ret);
     }
-  }
+}
