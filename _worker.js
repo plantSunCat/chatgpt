@@ -8,9 +8,10 @@ export default {
             method: request.method,
             body: request.body,
             redirect: 'follow'
-        }).then(response => {
-            //  response.headers.set('req', '1111111');
         })
+//         .then(response => {
+//             //  response.headers.set('req', '1111111');
+//         })
         // .catch(error => {
         //     response.body.set('{"error": "' + error + '"}')
         // });;
