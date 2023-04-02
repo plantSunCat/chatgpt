@@ -11,11 +11,11 @@ export default {
         redirect: 'follow'
       });
 
-      const requestBodyJson = await request.json();
+    //  const requestBodyJson = await request.json();
       const responseBodyJson = await response.json();
 
       let ret = {
-        req: requestBodyJson,
+     //   req: requestBodyJson,
         res: responseBodyJson
       }
 
