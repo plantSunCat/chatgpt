@@ -9,7 +9,7 @@ export default {
             body: request.body,
             redirect: 'follow'
         });
-        response.headers.set('req', JSON.stringify(request));
+        //response.headers.set('req', JSON.stringify(request));
         return response;
     }
 }
