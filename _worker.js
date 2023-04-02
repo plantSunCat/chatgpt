@@ -21,6 +21,6 @@ export default {
             res: response.json()
         }
 
-        return new Response(JSON.stringify(ret, response);
+        return new Response(JSON.stringify(ret));
     }
 }
