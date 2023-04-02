@@ -1,26 +1,29 @@
-
 export default {
     async fetch(request, env) {
       const url = new URL(request.url);
       url.host = "api.openai.com";
-      // openai is already set all CORS heasders 
+  
+      try {
         const response = await fetch(url, {
-            headers: request.headers,
-            method: request.method,
-            body: request.body,
-            redirect: 'follow'
-        })
-        .catch(error => {
-            let ret = {error: error}
-            return 
+          headers: request.headers,
+          method: request.method,
+          body: request.body,
+          redirect: 'follow'
         });
-
-        
+  
+        const requestBodyJson = await request.json();
+        const responseBodyJson = await response.json();
+  
         let ret = {
-            req: request.json(),
-            res: response.json()
+          req: requestBodyJson,
+          res: responseBodyJson
         }
-
-        return new Response(JSON.stringify(ret));
+  
+        return new Response(JSON.stringify(ret), response);
+      } catch (error) {
+        let ret = {error: error}
+        return new Response(JSON.stringify(ret), {status: 500});
+      }
     }
-}
+  }
+  
