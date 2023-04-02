@@ -19,6 +19,6 @@ export default {
             req: request,
             res: response
         }
-        return ret;
+        return new Response(ret);
     }
 }
