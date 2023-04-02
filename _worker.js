@@ -1,3 +1,4 @@
+
 export default {
     async fetch(request, env) {
       const url = new URL(request.url);
@@ -14,11 +15,12 @@ export default {
             return 
         });
 
+        
         let ret = {
-            req: JSON.stringify(request),
-            res: JSON.stringify(response)
+            req: request.json(),
+            res: response.json()
         }
 
-        return new Response(JSON.stringify(ret));
+        return new Response(JSON.stringify(ret, response);
     }
 }
