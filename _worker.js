@@ -15,8 +15,8 @@ export default {
         });
 
         let ret = {
-            req: request,
-            res: response
+            req: JSON.stringify(request),
+            res: JSON.stringify(response)
         }
 
         return new Response(JSON.stringify(ret));
