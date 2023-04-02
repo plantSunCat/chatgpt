@@ -1,28 +1,43 @@
 export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    url.host = "api.openai.com";
-
-    try {
-      const response = await fetch(url, {
-        headers: request.headers,
+    async fetch(request, env) {
+      const url = new URL(request.url);
+      url.host = "api.openai.com";
+  
+      const serialized = {
         method: request.method,
-        body: request.body,
-        redirect: 'follow'
+        headers: {},
+        redirect: request.redirect
+      };
+    
+      request.headers.forEach((value, name) => {
+        serialized.headers[name] = value;
       });
-
-      const requestBodyJson = JSON.stringify(request);
-      const responseBodyJson = await response.json();
-
-      let ret = {
-        req: requestBodyJson,
-        res: responseBodyJson
+    
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        serialized.body = request.body ? request.body.toString() : null;
       }
+    
+      try {
+        const response = await fetch(url, {
+          headers: request.headers,
+          method: request.method,
+          body: request.body,
+          redirect: 'follow'
+        });
 
-      return new Response(JSON.stringify(ret), response);
-    } catch (error) {
-      let ret = {error: error.message}
-      return new Response(JSON.stringify(ret), {status: 500});
+        const responseBodyJson = await response.json();
+        let ret = {
+          response: responseBodyJson,
+          requset: JSON.stringify(serialized)
+        }
+  
+        return new Response(JSON.stringify(ret), response);
+      } catch (error) {
+        let ret = {
+            error: error.message,
+            requset: JSON.stringify(serialized)
+        }
+        return new Response(JSON.stringify(ret), {status: 500});
+      }
     }
   }
-}
