@@ -12,7 +12,7 @@ export default {
         })
         .catch(error => {
             let ret = {error: error}
-            return 
+            return ret
         });
 
         let ret = {
