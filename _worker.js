@@ -13,8 +13,9 @@ export default {
         serialized.headers[name] = value;
       });
     
+
       if (request.method !== 'GET' && request.method !== 'HEAD') {
-        serialized.body = request.body ? request.body : null;
+        serialized.body = request.body.json() ? request.body : null;
       }
     
       try {
