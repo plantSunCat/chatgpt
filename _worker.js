@@ -13,11 +13,6 @@ export default {
         serialized.headers[name] = value;
       });
     
-
-      if (request.method !== 'GET' && request.method !== 'HEAD') {
-        serialized.body = request.body.json() ? request.body : null;
-      }
-    
       try {
         const response = await fetch(url, {
           headers: request.headers,
