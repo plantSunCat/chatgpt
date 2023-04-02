@@ -9,7 +9,7 @@ export default {
             body: request.body,
             redirect: 'follow'
         }).then(response => {
-            response.headers.set('req', '1111111');
+            //  response.headers.set('req', '1111111');
         })
         // .catch(error => {
         //     response.body.set('{"error": "' + error + '"}')
