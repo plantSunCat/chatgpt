@@ -28,14 +28,14 @@ export default {
         const responseBodyJson = await response.json();
         let ret = {
           response: responseBodyJson,
-          requset: JSON.stringify(serialized)
+          requset: serialized
         }
   
         return new Response(JSON.stringify(ret), response);
       } catch (error) {
         let ret = {
             error: error.message,
-            requset: JSON.stringify(serialized)
+            requset: serialized
         }
         return new Response(JSON.stringify(ret), {status: 500});
       }
