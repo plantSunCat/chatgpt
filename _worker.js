@@ -10,15 +10,16 @@ export default {
             body: request.body,
             redirect: 'follow'
         })
-        .catch(error => {
-            let ret = {error: error}
-            return ret
-        });
+        return response
+//         .catch(error => {
+//             let ret = {error: error}
+//             return ret
+//         });
 
-        let ret = {
-            req: request,
-            res: response
-        }
-        return new Response(ret);
+//         let ret = {
+//             req: request,
+//             res: response
+//         }
+//         return new Response(ret);
     }
 }
